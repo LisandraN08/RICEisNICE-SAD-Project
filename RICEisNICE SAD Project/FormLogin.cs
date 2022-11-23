@@ -47,5 +47,10 @@ namespace RICEisNICE_SAD_Project
         {
             System.Windows.Forms.Application.Exit();
         }
+
+        private void btnSignUp_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
