@@ -103,6 +103,26 @@ namespace RICEisNICE_SAD_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btnInputNewOffer {
+            get {
+                object obj = ResourceManager.GetObject("btnInputNewOffer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btnInputNewOrder {
+            get {
+                object obj = ResourceManager.GetObject("btnInputNewOrder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btnLogout {
             get {
                 object obj = ResourceManager.GetObject("btnLogout", resourceCulture);
@@ -236,6 +256,16 @@ namespace RICEisNICE_SAD_Project.Properties {
         internal static System.Drawing.Bitmap substract {
             get {
                 object obj = ResourceManager.GetObject("substract", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap substract__1_ {
+            get {
+                object obj = ResourceManager.GetObject("substract (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

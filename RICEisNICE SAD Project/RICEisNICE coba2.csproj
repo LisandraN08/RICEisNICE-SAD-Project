@@ -36,7 +36,6 @@
     <Reference Include="MySql.Data, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -84,12 +83,6 @@
     <Compile Include="FormOrder.Designer.cs">
       <DependentUpon>FormOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormViewChef.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormViewChef.Designer.cs">
-      <DependentUpon>FormViewChef.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormInputOrder.resx">
@@ -109,9 +102,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOrder.resx">
       <DependentUpon>FormOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormViewChef.resx">
-      <DependentUpon>FormViewChef.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -192,12 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnInputNewOrder.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnInputNewOffer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\substract %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace RICEisNICE_SAD_Project
 {
     public partial class FormLoginChef : Form
     {
+        DataTable dtEmployeeChef = new DataTable();
         public FormLoginChef()
         {
             InitializeComponent();
+            tBoxPassword.PasswordChar = '*';
+            tBoxPassword.MaxLength = 30;
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(FormLoad.CreateRoundRectRgn(0, 0, Width, Height, 70, 70));
             panel1.Region = Region.FromHrgn(FormLoad.CreateRoundRectRgn(0, 0, panel1.Width, panel1.Height, 1000, 1000));
@@ -29,6 +33,8 @@ namespace RICEisNICE_SAD_Project
 
         private void lblLogIn_Click(object sender, EventArgs e)
         {
+            lblName.Visible = false;
+            tBoxName.Visible = false;
             garisLogin.Visible = true;
             garisSignUp.Visible = false;
             btnSignUp.Visible = false;
@@ -36,6 +42,8 @@ namespace RICEisNICE_SAD_Project
 
         private void lblSignUp_Click(object sender, EventArgs e)
         {
+            lblName.Visible = true;
+            tBoxName.Visible = true;
             garisSignUp.Visible = true;
             garisLogin.Visible = false;
             btnSignUp.Visible = true;
@@ -43,12 +51,49 @@ namespace RICEisNICE_SAD_Project
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string sqlQuery = $"INSERT INTO EMPLOYEE VALUES ('', '" + tBoxName.Text.ToString() + "', '" + tBoxUsername.Text.ToString() + "', '" + tBoxPassword.Text.ToString() + "', null, null, 'CHEF', 0);";
+                MySqlCommand sqlCommand = new MySqlCommand(sqlQuery, FormLoad.sqlConnect);
+                MySqlDataAdapter sqlAdapter = new MySqlDataAdapter(sqlCommand);
 
+                int rowsAffected = sqlCommand.ExecuteNonQuery();
+                //Do something post insert
+
+            }
+            catch (MySqlException ex)
+            {
+                if (ex.Number == 1062)
+                {
+                    //Duplicate key error.  Data already exists now do something.
+                }
+            }
+            MessageBox.Show("Your data has been inputted.");
+            FormViewChef form2 = new FormViewChef();
+            form2.Show();
+            this.Hide();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
+            FormOrder form2 = new FormOrder();
+            string sqlQuery = $"SELECT * FROM EMPLOYEE WHERE EMPLOYEE.EMP_LEVEL = 'CHEF';";
+            MySqlCommand sqlCommand = new MySqlCommand(sqlQuery, FormLoad.sqlConnect);
+            MySqlDataAdapter sqlAdapter = new MySqlDataAdapter(sqlCommand);
+            sqlAdapter.Fill(dtEmployeeChef);
+            for (int i = 0; i <= dtEmployeeChef.Rows.Count - 1; i++)
+            {
+                if (tBoxUsername.Text == dtEmployeeChef.Rows[i][2].ToString() && tBoxPassword.Text == dtEmployeeChef.Rows[i][3].ToString())
+                {
+                    FormViewChef form3 = new FormViewChef();
+                    form3.Show();
+                    this.Hide();
+                }
+                else if (i == dtEmployeeChef.Rows.Count)
+                {
+                    MessageBox.Show("Wrong username or password! Please try again.");
+                }
+            }
         }
 
         private void pBoxExit_Click(object sender, EventArgs e)

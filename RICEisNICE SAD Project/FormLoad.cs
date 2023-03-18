@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,10 +32,25 @@ namespace RICEisNICE_SAD_Project
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 70, 70));
             progressBar1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, progressBar1.Width, progressBar1.Height, 30, 30));
         }
+        public static MySqlConnection sqlConnect = new MySqlConnection("server=139.255.11.84;uid=student;pwd=isbmantap;database=SAD_RiceIsNice");
+        MySqlCommand sqlCommand;
+        MySqlDataAdapter sqlAdapter;
+        string sqlQuery;
+
         private void FormLoad_Load(object sender, EventArgs e)
         {
             timer1.Start();
             progressBar1.BackColor = Color.FromArgb(247, 193, 75);
+            try
+            {
+                if (sqlConnect.State == ConnectionState.Closed)
+                {
+                    sqlConnect.Open();
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
